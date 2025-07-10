@@ -5,7 +5,7 @@ from datetime import datetime
 file_path = "dataSource/Base_Carbone_V23.6-v2.xlsx"  # Adjust if needed
 df = pd.read_excel(file_path)
 
-# Display first few rows and column names to identify useful columns
+# Display the first few rows and column names to identify useful columns
 print(df.head())
 print(df.columns.tolist())
 
