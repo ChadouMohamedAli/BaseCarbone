@@ -1,5 +1,6 @@
 import pandas as pd
 import unicodedata
+from datetime import datetime
 
 # Load the Base Carbone file
 df = pd.read_excel('dataSource/Base_Carbone_V23.6-v3.xlsx', sheet_name='F1')
@@ -80,7 +81,7 @@ reference = [
     # Scope 3 – Autres
     ("6.1 Autres émissions indirectes", "6. AUTRES ÉMISSIONS INDIRECTES", "Scope 3")
 ]
-
+'''
 # Turn into DataFrame for joining
 ref_df = pd.DataFrame(reference, columns=["poste", "categorie", "scope"])
 
@@ -93,6 +94,9 @@ df = df.merge(ref_df[['poste_clean', 'categorie', 'scope']], on='poste_clean', h
 
 # Drop helper column
 df.drop(columns=['poste_clean'], inplace=True)
-
+'''
 # Save result
-df.to_excel("Db/Base_Carbone_classified.xlsx", index=False)
+filename = f"Db/Base_Carbone_classified_V{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}.xlsx"
+df.to_excel(filename, index=False)
+df.to_csv(f"Db/Base_Carbone_classified_V{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}.csv", index=False)
+print("df saved to : ", filename," .")
